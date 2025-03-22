@@ -29,4 +29,4 @@ class loggingIn extends Page {
 }
 
 
-export default loggingIn;
+export default new loggingIn;
