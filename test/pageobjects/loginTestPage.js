@@ -2,12 +2,28 @@ import {$} from '@wdio/globals';
 import Page from './page.js';
 
 
-class loggedIn extends Page {
-    get inputUsername() {
-        return $('#username');
+class loggingIn extends Page {
+    get usernameInputField() {
+        return $('#user-name');
+    }
+    get passwordInputField() {
+        return $('#password')
     }
 
+    async login (username, password) {
+        await this.usernameInputField.setValue(username);
+        await this.passwordInputField.setValue(password);
+        await this.btnSubmit.click();
+    }
+
+    get headerProducts () {
+        return $('//span[@data-test="title"][contains(text(), "Products")]');
+    };
+
+    open () {
+        return super.open('login');
+    }
 }
 
 
-export default new loggedIn();
+export default loggingIn();
