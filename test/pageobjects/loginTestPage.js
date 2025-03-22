@@ -9,6 +9,9 @@ class loggingIn extends Page {
     get passwordInputField() {
         return $('#password')
     }
+    get btnSubmit () {
+        return $('//*[@id="login-button"]');
+    }
 
     async login (username, password) {
         await this.usernameInputField.setValue(username);
@@ -26,4 +29,4 @@ class loggingIn extends Page {
 }
 
 
-export default loggingIn();
+export default loggingIn;

@@ -1,8 +1,10 @@
-import loginTestPage from '../pageobjects/loginTestPage';
+import loggingIn from '../page-objects/loginTestPage.js';
+
+
 
 describe('The login page', () => {
     it('should have the right credentials', async () => {
-        await loginTestPage.open()
-        await enterCredentials.login('standard_user', 'secret_sauce')
+        await loggingIn.open()
+        await loggingIn.login('standard_user', 'secret_sauce')
     });
 });
