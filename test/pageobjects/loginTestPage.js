@@ -4,14 +4,18 @@ import Page from './page.js';
 
 class loggingIn extends Page {
     get usernameInputField() {
-        return $('#user-name');
+        return $('#username');
     }
     get passwordInputField() {
-        return $('#password')
+        return $('#password');
     }
     get btnSubmit () {
         return $('//*[@id="login-button"]');
     }
+
+    get headerProducts () {
+        return $('//span[@data-test="title"][contains(text(), "Products")]');
+    };
 
     async login (username, password) {
         await this.usernameInputField.setValue(username);
@@ -19,9 +23,10 @@ class loggingIn extends Page {
         await this.btnSubmit.click();
     }
 
-    get headerProducts () {
-        return $('//span[@data-test="title"][contains(text(), "Products")]');
-    };
+    async firstUserAttempt () {
+        await this.login(username, password);
+        await expect(this.headerProducts).toExist();
+    }
 
     open () {
         return super.open('login');
@@ -29,4 +34,4 @@ class loggingIn extends Page {
 }
 
 
-export default new loggingIn;
+export default new loggingIn();
