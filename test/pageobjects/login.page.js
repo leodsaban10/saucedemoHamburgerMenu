@@ -9,7 +9,7 @@ import Page from './page.js';
      * define selectors using getter methods
      */
      get inputUsername () {
-         return $('#username');
+         return $('#user-name');
      }
 
      get inputPassword () {
@@ -25,6 +25,7 @@ import Page from './page.js';
      * e.g. to login using username and password
      */
      async login (username, password) {
+        
          await this.inputUsername.setValue(username);
          await this.inputPassword.setValue(password);
          await this.btnSubmit.click();
