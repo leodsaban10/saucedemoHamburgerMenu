@@ -42,6 +42,11 @@ class loggingIn extends Page {
 
     }
 
+    async shoppingCart () {
+        await this.shoppingCartIcon.click();
+        await expect(this.shoppingCartPage).toExist();
+    }
+
     open () {
         return super.open();
     }

@@ -19,6 +19,10 @@ describe('The login page', () => {
         await loggingIn.login('standard_user', 'secret_sauce'); // Ensure the login function is awaited
     });
    
+    it('check the shopping cart icon is displayed', async () => {
+        await loggingIn.shoppingCart(); // Ensure the shoppingCart function is awaited
+    });
+
     it('should be displayed when clicked', async () => {
         await loggingIn.hamburgerMenu(); // Ensure the hamburgerMenu function is awaited
     });
