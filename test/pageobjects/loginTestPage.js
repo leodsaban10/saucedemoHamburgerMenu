@@ -24,6 +24,10 @@ class loggingIn extends Page {
         return $('.bm-menu');
     }
 
+    get shoppingCartPage () {
+        return $('//*[@id="shopping_cart_container"]');
+    }
+
     async login (username, password) {
         await this.usernameInputField.setValue(username);
         await this.passwordInputField.setValue(password);
@@ -43,7 +47,6 @@ class loggingIn extends Page {
     }
 
     async shoppingCart () {
-        await this.shoppingCartIcon.click();
         await expect(this.shoppingCartPage).toExist();
     }
 
