@@ -23,9 +23,11 @@ class loggingIn extends Page {
     get menu () {
         return $('.bm-menu');
     }
-
-    get shoppingCartPage () {
-        return $('//*[@id="shopping_cart_container"]');
+    get lockoutMessage () {
+        return $('.error-button');
+    }
+    get failedMessage () {
+        return $('//h3[contains(text(), "Epic sadface: Username and password do not match any user in this service")]');
     }
 
     async login (username, password) {
@@ -34,21 +36,24 @@ class loggingIn extends Page {
         await this.btnSubmit.click();
     }
 
-    async firstUserAttempt () {
+    async firstUserAttempt (username, password) {
         await this.login(username, password);
         await expect(this.headerProducts).toExist();
     }
 
     async hamburgerMenu () {
         await this.hamburgerMenuButton.click();
-        // await expect(this.hamburgerMenu).toExist();
         await expect(this.menu).toBeDisplayed();
 
     }
-
-    async shoppingCart () {
-        await expect(this.shoppingCartPage).toExist();
+    get logOutButton () {
+        return $('//*[@id="logout_sidebar_link"]');
     }
+
+    async logOut () {
+        await this.logOutButton.click();
+    }
+
 
     open () {
         return super.open();
@@ -57,3 +62,4 @@ class loggingIn extends Page {
 
 
 export default new loggingIn();
+

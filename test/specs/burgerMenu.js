@@ -1,35 +1,30 @@
 import loggingIn from '../pageobjects/loginTestPage.js';
 import loggingOut from '../pageobjects/logOutTestPage.js';
 
-
-
-// describe('The login page', () => {
-//     it('should have the right credentials', async () => {
-//         loggingIn.open()
-//         firstUserAttemp.login('standard_user', 'secret_sauce')
-//     });
-// });
+let users = ['username, password']
+    users.forEach((user) => {
+        
+    })
 
 describe('The login page', () => {
     before(async () => {
         await loggingIn.open(); // Ensure the browser navigates to the login page before the test
     });
 
-    it('should have the right credentials', async () => {
+    it('should open with the accepted credentials', async () => {
         await loggingIn.login('standard_user', 'secret_sauce'); // Ensure the login function is awaited
     });
    
-    it('check the shopping cart icon is displayed', async () => {
-        await loggingIn.shoppingCart(); // Ensure the shoppingCart function is awaited
-    });
+    // it('check the shopping cart icon is displayed', async () => {
+    //     await loggingIn.shoppingCart(); // Ensure the shoppingCart function is awaited
+    // });
 
-    it('should be displayed when clicked', async () => {
+    it('Menu should be displayed when clicked', async () => {
         await loggingIn.hamburgerMenu(); // Ensure the hamburgerMenu function is awaited
     });
 
-    it('foo', async () => {
+    it('logs out of site', async () => {
         await loggingOut.logOut(); // Ensure the hamburgerMenu function is awaited
     });
 });
-
 
