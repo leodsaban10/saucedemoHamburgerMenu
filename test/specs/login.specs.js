@@ -17,11 +17,15 @@ describe('User can log in', () => {
             await loggingIn.logOut(); // Logs out
             await expect(loggingIn.btnSubmit).toExist(); // Ensure user is logged out before next username attempt
         });
+
+    before(async () => {
+        await loggingIn.open(); // Open login page before running tests
     });
-    it(`should fail logging in`, async () => {
-        await loggingIn.login('locked_out_user', password); // Login attempt
-        await expect(loggingIn.lockoutMessage).toExist(); // Validate successful login
-        await expect(loggingIn.btnSubmit).toExist(); // Ensure user is logged out before next iteration
+        it(`all correct logins should fail ${username}`, async () => {
+            await loggingIn.login(username, 'badpassword'); // Login attempt
+            await expect(loggingIn.failedMessage).toExist(); // Validate successful login
+            await expect(loggingIn.btnSubmit).toExist(); // Ensure user is logged out before next iteration
+        });
     });
 });
 
