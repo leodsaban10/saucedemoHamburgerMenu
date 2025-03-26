@@ -1,4 +1,4 @@
-import {$, expect} from '@wdio/globals';
+import {$, browser, expect} from '@wdio/globals';
 import Page from './page.js';
 // import { expect } from 'wdio/globals';
 
@@ -53,11 +53,6 @@ class loggingIn extends Page {
         await this.aboutText.click();
         await expect(browser).toHaveUrl('https://saucelabs.com/')
     }
-    async redoLogin (username, password) {
-        await this.firstUserAttempt(username, password);
-        await this.hamburgerMenu();
-        
-    }
     // async backButton () {
     //     await this.hamburgerMenuButton.click();
     // }
@@ -67,6 +62,7 @@ class loggingIn extends Page {
 
     async logOut () {
         await this.logOutButton.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/');
     }
 
 
