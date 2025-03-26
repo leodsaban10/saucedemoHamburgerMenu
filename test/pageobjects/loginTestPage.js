@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import {$, expect} from '@wdio/globals';
 import Page from './page.js';
 // import { expect } from 'wdio/globals';
 
@@ -24,6 +24,9 @@ class loggingIn extends Page {
     get menu () {
         return $('.bm-menu');
     }
+    get aboutText () {
+        return $('//*[@id="about_sidebar_link"]');
+    }
     get lockoutMessage () {
         return $('.error-button');
     }
@@ -45,8 +48,19 @@ class loggingIn extends Page {
     async hamburgerMenu () {
         await this.hamburgerMenuButton.click();
         await expect(this.menu).toBeDisplayed();
-
     }
+    async about () {
+        await this.aboutText.click();
+        await expect(browser).toHaveUrl('https://saucelabs.com/')
+    }
+    async redoLogin (username, password) {
+        await this.firstUserAttempt(username, password);
+        await this.hamburgerMenu();
+        
+    }
+    // async backButton () {
+    //     await this.hamburgerMenuButton.click();
+    // }
     get logOutButton () {
         return $('//*[@id="logout_sidebar_link"]');
     }
