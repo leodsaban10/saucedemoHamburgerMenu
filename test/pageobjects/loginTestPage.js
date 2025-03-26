@@ -33,6 +33,15 @@ class loggingIn extends Page {
     get failedMessage () {
         return $('//h3[contains(text(), "Epic sadface: Username and password do not match any user in this service")]');
     }
+    get logOutButton () {
+        return $('//*[@id="logout_sidebar_link"]');
+    }
+    get shoppingCartButton () {
+        return $('//*[@id="shopping_cart_container"]');
+    }
+    get continueShoppingButton () {
+        return $('//*[@id="continue-shopping"]');
+    }
 
     async login (username, password) {
         await this.usernameInputField.setValue(username);
@@ -53,12 +62,13 @@ class loggingIn extends Page {
         await this.aboutText.click();
         await expect(browser).toHaveUrl('https://saucelabs.com/')
     }
-    // async backButton () {
-    //     await this.hamburgerMenuButton.click();
-    // }
-    get logOutButton () {
-        return $('//*[@id="logout_sidebar_link"]');
+    async shoppingCartIcon () {
+        await this.shoppingCartButton.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/cart.html');
+        await this.continueShoppingButton.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
     }
+
 
     async logOut () {
         await this.logOutButton.click();
