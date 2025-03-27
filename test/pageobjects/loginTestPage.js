@@ -5,7 +5,7 @@ import Page from './page.js';
 
 class loggingIn extends Page {
     get usernameInputField() {
-        return $('//*[@id="user-name"]');
+        return $('#user-name');
     }
 
     get passwordInputField() {
@@ -13,7 +13,7 @@ class loggingIn extends Page {
     }
 
     get btnSubmit () {
-        return $('//*[@id="login-button"]');
+        return $('#login-button');
     }
 
     get headerProducts () {
@@ -21,7 +21,7 @@ class loggingIn extends Page {
     }
 
     get hamburgerMenuButton () {
-        return $('//*[@id="react-burger-menu-btn"]');
+        return $('#react-burger-menu-btn');
     }
 
     get menu () {
@@ -29,7 +29,7 @@ class loggingIn extends Page {
     }
 
     get aboutText () {
-        return $('//*[@id="about_sidebar_link"]');
+        return $('#about_sidebar_link');
     }
 
     get lockoutMessage () {
@@ -41,15 +41,15 @@ class loggingIn extends Page {
     }
 
     get logOutButton () {
-        return $('//*[@id="logout_sidebar_link"]');
+        return $('#logout_sidebar_link');
     }
 
     get shoppingCartButton () {
-        return $('//*[@id="shopping_cart_container"]');
+        return $('#shopping_cart_container');
     }
 
     get continueShoppingButton () {
-        return $('//*[@id="continue-shopping"]');
+        return $('#continue-shopping');
     }
 
     get qtyElement () {
@@ -58,6 +58,14 @@ class loggingIn extends Page {
 
     get descriptionElement () {
         return $('//*[@class="cart_desc_label"]');
+    }
+
+    get checkOutButton () {
+        return $('#checkout')
+    }
+
+    get cancelButton () {
+        return $('#cancel')
     }
 
     async login (username, password) {
@@ -86,6 +94,10 @@ class loggingIn extends Page {
         await this.shoppingCartButton.click();
         await expect(this.qtyElement).toHaveText('QTY');
         await expect(this.descriptionElement).toHaveText('Description');
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/cart.html');
+        await this.checkOutButton.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/checkout-step-one.html')
+        await this.cancelButton.click();
         await expect(browser).toHaveUrl('https://www.saucedemo.com/cart.html');
         await this.continueShoppingButton.click();
         await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
