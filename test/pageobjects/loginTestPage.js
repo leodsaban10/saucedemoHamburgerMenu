@@ -53,11 +53,11 @@ class loggingIn extends Page {
     }
 
     get qtyElement () {
-        return $('//*[@class="cart_quantity_label"]')
+        return $('//*[@class="cart_quantity_label"]');
     }
 
     get descriptionElement () {
-        return $('//*[@class="cart_desc_label"]')
+        return $('//*[@class="cart_desc_label"]');
     }
 
     async login (username, password) {
